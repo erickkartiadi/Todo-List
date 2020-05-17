@@ -1,20 +1,15 @@
 import React, { useEffect } from "react";
 
-import TodoForm from "./TodoForm";
-import { TodoDate } from "./TodoDate";
-import { TodoList } from "./TodoList";
-import useTodoState from "../hooks/useTodoState";
-import { makeStyles } from "@material-ui/core/styles";
-import Footer from "./Footer";
+import Footer from "../shared/Footer/Footer";
+import Navbar from "../shared/Navbar/Navbar";
+import TodoForm from "../TodoForm/TodoForm";
+import TodoDate from "../TodoDate/TodoDate";
+import TodoList from "../TodoList/TodoList";
 
-import {
-  Paper,
-  Box,
-  Grid,
-  AppBar,
-  Typography,
-  Toolbar,
-} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Box, Grid, Toolbar } from "@material-ui/core";
+
+import useTodoState from "../../hooks/useTodoState";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -42,11 +37,7 @@ function TodoApp() {
 
   return (
     <>
-      <AppBar>
-        <Toolbar>
-          <Typography variant="h6">TodayList</Typography>
-        </Toolbar>
-      </AppBar>
+      <Navbar />
       <Grid container justify="center" style={{ height: "100vh" }}>
         <Grid item xs={11}>
           <Toolbar />
@@ -57,20 +48,14 @@ function TodoApp() {
             flexDirection="column"
             style={{ border: "1px solid black", padding: "1rem" }}
           >
-            <Box style={{ marginBottom: "1rem" }}>
-              <TodoDate />
-            </Box>
-            <Box style={{ marginBottom: "1rem" }}>
-              <TodoForm addTodo={addTodo} />
-            </Box>
-            <Box height="72.5%">
-              <TodoList
-                todos={todos}
-                updateTodo={updateTodo}
-                deleteTodo={deleteTodo}
-                toggleComplete={toggleComplete}
-              />
-            </Box>
+            <TodoDate />
+            <TodoForm addTodo={addTodo} />
+            <TodoList
+              todos={todos}
+              updateTodo={updateTodo}
+              deleteTodo={deleteTodo}
+              toggleComplete={toggleComplete}
+            />
           </Box>
         </Grid>
       </Grid>
