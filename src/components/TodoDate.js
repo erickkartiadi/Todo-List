@@ -1,13 +1,14 @@
 import React from "react";
 import { getDate } from "../helpers";
+import { Typography } from "@material-ui/core";
 
 export function TodoDate() {
   const { weekday, date } = getDate();
 
   return (
     <>
-      <h1>{weekday}</h1>
-      <h1>{date}</h1>
+      <Typography variant="h4">{weekday}</Typography>
+      <Typography variant="subtitle1">{date}</Typography>
     </>
   );
 }
