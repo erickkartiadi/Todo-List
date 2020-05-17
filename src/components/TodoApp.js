@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { TodoForm } from "./TodoForm";
+import TodoForm from "./TodoForm";
 import { TodoDate } from "./TodoDate";
 import { TodoList } from "./TodoList";
 import useTodoState from "../hooks/useTodoState";

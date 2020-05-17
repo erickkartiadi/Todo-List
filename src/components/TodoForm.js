@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useInput from "../hooks/useInputState";
 import { makeStyles } from "@material-ui/core/styles";
 import InputBase from "@material-ui/core/InputBase";
@@ -8,6 +8,13 @@ import { Grid, Button } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Snackbar from "@material-ui/core/Snackbar";
 import CloseIcon from "@material-ui/icons/Close";
+import useToggle from "../hooks/useToggleState";
+import MuiAlert from "@material-ui/lab/Alert";
+import { SnackbarProvider, useSnackbar } from "notistack";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles(() => ({
   input: {
@@ -18,22 +25,32 @@ const useStyles = makeStyles(() => ({
     margin: 4,
   },
 }));
-export function TodoForm({ addTodo }) {
+function MyApp({ addTodo }) {
   const [newTaskInput, handleNewTaskInput, clearNewTaskInput] = useInput("");
+  const [isSnackBarOpen, setIsSnackBarOpen] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-
     addTodo(newTaskInput);
     clearNewTaskInput();
   };
 
   const classes = useStyles();
 
+  const handleClick = (variant) => (e) => {
+    // variant could be success, error, warning, info, or default
+    e.preventDefault();
+    handleSubmit();
+    enqueueSnackbar("Task Added", { variant });
+    logging();
+  };
+  const logging = () => {
+    console.log("in");
+  };
   return (
     <Grid
       component="form"
-      onSubmit={handleSubmit}
+      onSubmit={handleClick("success")}
       container
       style={{
         borderRadius: "0.25rem",
@@ -44,7 +61,6 @@ export function TodoForm({ addTodo }) {
         style={{ marginLeft: "1rem" }}
         className={classes.input}
         placeholder="Add New Task"
-        inputProps={{ "aria-label": "search google maps" }}
         type="text"
         value={newTaskInput}
         onChange={handleNewTaskInput}
@@ -59,14 +75,15 @@ export function TodoForm({ addTodo }) {
       >
         <AddCircleIcon fontSize="small" />
       </IconButton>
-      <Snackbar
+      {/* <Snackbar
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "left",
         }}
-        open={true}
-        autoHideDuration={6000}
-        // onClose={handleClose}
+        onClose={closeSnackbar}
+        open={isSnackBarOpen}
+        autoHideDuration={3000}
+        // onClose={toggleIsSnackBarOpen}
         message="Note archived"
         action={
           <React.Fragment>
@@ -77,13 +94,25 @@ export function TodoForm({ addTodo }) {
               size="small"
               aria-label="close"
               color="inherit"
-              // onClick={handleClose}
+              onClick={closeSnackbar}
             >
               <CloseIcon fontSize="small" />
             </IconButton>
           </React.Fragment>
         }
-      />
+      >
+        <Alert onClose={closeSnackbar} severity="success">
+          Task Added
+        </Alert>
+      </Snackbar> */}
     </Grid>
+  );
+}
+
+export default function IntegrationNotistack(props) {
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <MyApp {...props} />
+    </SnackbarProvider>
   );
 }
