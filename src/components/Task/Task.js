@@ -9,25 +9,21 @@ import {
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
+import { useStyles } from "./useStyles";
+
 function Task({ isComplete, toggleIsEdit, task, handleDelete }) {
   const handleEdit = () => {
     !isComplete && toggleIsEdit();
   };
+
+  const classes = useStyles();
   return (
     <>
-      <ListItemText
-        style={{
-          margin: 0,
-        }}
-      >
+      <ListItemText className={classes.taskItem}>
         <div
-          style={{
-            cursor: "pointer",
-            textDecoration: isComplete ? "line-through" : "none",
-            width: "70%",
-            wordBreak: "break-all",
-          }}
           onClick={handleEdit}
+          style={{ textDecoration: isComplete ? "line-through" : "none" }}
+          className={classes.taskText}
         >
           {task}
         </div>

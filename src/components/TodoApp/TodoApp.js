@@ -6,16 +6,10 @@ import TodoForm from "../TodoForm/TodoForm";
 import TodoDate from "../TodoDate/TodoDate";
 import TodoList from "../TodoList/TodoList";
 
-import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Toolbar } from "@material-ui/core";
 
 import useTodoState from "../../hooks/useTodoState";
-
-const useStyles = makeStyles((theme) => ({
-  toolbar: {
-    minHeight: 48,
-  },
-}));
+import { useStyles } from "./useStyles";
 
 function TodoApp() {
   const {

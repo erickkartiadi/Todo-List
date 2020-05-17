@@ -1,28 +1,16 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Box, IconButton, Divider, InputBase } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 
 import { SnackbarProvider, useSnackbar } from "notistack";
 
 import useInput from "../../hooks/useInputState";
-
-const useStyles = makeStyles(() => ({
-  input: {
-    flex: 1,
-  },
-  divider: {
-    height: "inherit",
-    margin: 4,
-  },
-}));
+import { useStyles } from "./useStyles";
 
 function MyApp({ addTodo }) {
   const [newTaskInput, handleNewTaskInput, clearNewTaskInput] = useInput("");
   const { enqueueSnackbar } = useSnackbar();
-
-  const classes = useStyles();
 
   const handleAddTodo = (e) => {
     addTodo(newTaskInput);
@@ -34,19 +22,17 @@ function MyApp({ addTodo }) {
     handleAddTodo();
     enqueueSnackbar("Task Added", { variant });
   };
+
+  const classes = useStyles();
   return (
-    <Box style={{ marginBottom: "1rem" }}>
+    <Box className={classes.root}>
       <Grid
+        className={classes.form}
         component="form"
         onSubmit={handleSubmit("success")}
         container
-        style={{
-          borderRadius: "0.25rem",
-          border: "1px solid rgba(0, 0, 0, 0.12)",
-        }}
       >
         <InputBase
-          style={{ marginLeft: "1rem" }}
           className={classes.input}
           placeholder="Add New Task"
           type="text"

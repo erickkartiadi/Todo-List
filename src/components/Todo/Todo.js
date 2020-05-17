@@ -1,7 +1,6 @@
 import React from "react";
 
 import { ListItem, ListItemIcon, Checkbox } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
 
@@ -9,12 +8,7 @@ import useToggle from "../../hooks/useToggleState";
 
 import Task from "../Task/Task";
 import TaskForm from "../TaskForm/TaskForm";
-
-const useStyles = makeStyles(() => ({
-  icon: {
-    minWidth: "42px",
-  },
-}));
+import { useStyles } from "./useStyles";
 
 function Todo({
   id,

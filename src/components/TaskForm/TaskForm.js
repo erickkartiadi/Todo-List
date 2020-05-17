@@ -6,24 +6,10 @@ import {
   IconButton,
   ListItemSecondaryAction,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 import ClearIcon from "@material-ui/icons/Clear";
 
 import useInput from "../../hooks/useInputState";
-
-const useStyles = makeStyles(() => ({
-  editTaskInput: {
-    caretColor: "blue",
-    "& :focus": {
-      color: "rgba(0,0,0,0.8)",
-    },
-  },
-  form: {
-    "& > div": {
-      padding: 0,
-    },
-  },
-}));
+import { useStyles } from "./useStyles";
 
 function TaskForm({ id, task, toggleIsEdit, updateTodo }) {
   const [editTaskInput, handleEditTaskInput, clearEditTaskInput] = useInput(
@@ -57,22 +43,20 @@ function TaskForm({ id, task, toggleIsEdit, updateTodo }) {
   };
 
   const classes = useStyles();
+  const handleOnBlur = () => {
+    toggleIsEdit();
+  };
   return (
     <>
       <FormControl
-        onBlur={() => {
-          toggleIsEdit();
-        }}
-        style={{
-          width: "70%",
-        }}
         component="form"
+        onBlur={handleOnBlur}
         onSubmit={handleUpdate}
         className={classes.form}
       >
         <InputBase
           id="standard-basic"
-          label="Standard"
+          label="Edit Task"
           value={editTaskInput}
           className={classes.editTaskInput}
           onKeyDown={onEnterPress}
@@ -82,10 +66,6 @@ function TaskForm({ id, task, toggleIsEdit, updateTodo }) {
           fullWidth
           multiline
           autoFocus
-          style={{
-            lineHeight: "1.5",
-            paddingRight: "30px",
-          }}
         />
       </FormControl>
       <ListItemSecondaryAction>
