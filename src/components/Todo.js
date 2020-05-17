@@ -102,14 +102,6 @@ function Todo({
   };
   return (
     <>
-      {/* 
-      ///// TODO snackbar
-      ///// TODO scroll task
-      ///// TODO click away , 
-      ///// TODO autofocus, 
-      /////focus edit 
-      //// on one list item 
-      */}
       <ListItem>
         <ListItemIcon className={classes.icon}>
           <Checkbox
