@@ -6,7 +6,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    marginBottom: "1rem",
+    marginBottom: "2rem",
+  },
+  title: {
+    fontFamily: "Amaranth",
+  },
+  subtitle: {
+    fontFamily: "Titillium Web",
   },
 }));
 function TodoDate() {
@@ -14,8 +20,12 @@ function TodoDate() {
   const classes = useStyles();
   return (
     <Box className={classes.root}>
-      <Typography variant="h4">{weekday}</Typography>
-      <Typography variant="subtitle1">{date}</Typography>
+      <Typography className={classes.title} variant="h4">
+        {weekday}
+      </Typography>
+      <Typography className={classes.subtitle} variant="subtitle1">
+        {date}
+      </Typography>
     </Box>
   );
 }

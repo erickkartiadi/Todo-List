@@ -10,9 +10,16 @@ export const useStyles = makeStyles(() => ({
   input: {
     marginLeft: "1rem",
     flex: 1,
+    fontFamily: "Titillium Web",
+    fontWeight: "bold",
   },
   divider: {
     height: "inherit",
     margin: 4,
+  },
+  iconButton: {
+    "& svg": {
+      color: "#3D9DF2",
+    },
   },
 }));

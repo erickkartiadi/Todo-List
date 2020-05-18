@@ -32,15 +32,15 @@ function TodoApp() {
   return (
     <>
       <Navbar />
-      <Grid container justify="center" style={{ height: "100vh" }}>
-        <Grid item xs={11}>
+      <Grid className={classes.container} container justify="center">
+        <Grid className={classes.grid} item xs={11} sm={8} md={6} lg={4}>
           <Toolbar />
           <div className={classes.toolbar} />
           <Box
-            height="70vh"
+            height="70%"
             display="flex"
             flexDirection="column"
-            style={{ border: "1px solid black", padding: "1rem" }}
+            className={classes.card}
           >
             <TodoDate />
             <TodoForm addTodo={addTodo} />

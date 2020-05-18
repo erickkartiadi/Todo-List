@@ -22,7 +22,10 @@ function Task({ isComplete, toggleIsEdit, task, handleDelete }) {
       <ListItemText className={classes.taskItem}>
         <div
           onClick={handleEdit}
-          style={{ textDecoration: isComplete ? "line-through" : "none" }}
+          style={{
+            textDecoration: isComplete ? "line-through" : "none",
+            textDecorationColor: isComplete && "grey",
+          }}
           className={classes.taskText}
         >
           {task}
@@ -35,6 +38,7 @@ function Task({ isComplete, toggleIsEdit, task, handleDelete }) {
           aria-label="edit"
           onClick={handleEdit}
           disabled={isComplete}
+          className={classes.editButton}
         >
           <EditIcon fontSize="small" />
         </IconButton>
@@ -43,6 +47,7 @@ function Task({ isComplete, toggleIsEdit, task, handleDelete }) {
           onClick={handleDelete}
           edge="end"
           aria-label="delete"
+          className={classes.deleteButton}
         >
           <DeleteIcon fontSize="small" />
         </IconButton>

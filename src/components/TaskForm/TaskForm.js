@@ -71,6 +71,7 @@ function TaskForm({ id, task, toggleIsEdit, updateTodo }) {
       <ListItemSecondaryAction>
         <IconButton
           onMouseDown={handleClear}
+          className={classes.clearButton}
           color="secondary"
           edge="end"
           aria-label="delete"

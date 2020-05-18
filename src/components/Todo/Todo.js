@@ -30,7 +30,7 @@ function Todo({
 
   const classes = useStyles();
   return (
-    <ListItem>
+    <ListItem className={classes.root}>
       <ListItemIcon className={classes.icon}>
         <Checkbox
           onChange={handleComplete}
@@ -40,7 +40,7 @@ function Todo({
           tabIndex={-1}
           fontSize="small"
           icon={<RadioButtonUncheckedIcon />}
-          checkedIcon={<CheckCircleIcon />}
+          checkedIcon={<CheckCircleIcon className={classes.checkedIcon} />}
           inputProps={{ "aria-labelledby": "task completed" }}
         />
       </ListItemIcon>

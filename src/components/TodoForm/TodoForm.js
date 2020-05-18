@@ -33,6 +33,7 @@ function MyApp({ addTodo }) {
         container
       >
         <InputBase
+          required
           className={classes.input}
           placeholder="Add New Task"
           type="text"
@@ -43,7 +44,6 @@ function MyApp({ addTodo }) {
         <IconButton
           type="submit"
           variant="contained"
-          color="primary"
           className={classes.iconButton}
           aria-label="directions"
         >
